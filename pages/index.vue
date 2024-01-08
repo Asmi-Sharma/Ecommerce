@@ -1,8 +1,8 @@
 <template>
   <div class="container my-20">
     <div class="flex flex-col items-center">
-      <h1 class="text-[48px] font-bold">Section title</h1>
-      <h2 class="text-xl">Section subtitle</h2>
+      <h1 class="text-[40px] font-bold">Section title</h1>
+      <h2 class="text-2xl">Section subtitle</h2>
     </div>
     <div class="flex gap-4">
       <div v-for="(product, i) in cardData" :key="i">
