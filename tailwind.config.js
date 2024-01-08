@@ -9,7 +9,11 @@ export default {
     "./app.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        buttongrey: "#EBECF5",
+      },
+    },
   },
   plugins: [],
 }
