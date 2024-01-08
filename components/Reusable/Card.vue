@@ -1,14 +1,14 @@
 <template>
   <div
-    class="border border-[#cccccc] shadow-sm rounded-lg pt-4 pr-4 w-[266px] hover:shadow-2xl mt-6"
+    class="border border-[#cccccc] shadow-sm rounded-lg pt-4 pr-4 w-[230px] hover:shadow-2xl mt-6"
   >
     <div class="px-4">
       <div class="flex justify-between pb-2">
-        <span class="font-medium">Card Title</span>
-        <img :src="multiplebox" class="w-6" />
+        <span class="font-medium">{{ props.cardTitle }}</span>
+        <img :src="props.icon" class="w-6" />
       </div>
       <div class="pr-2 pb-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        {{ props.description }}
       </div>
     </div>
     <button
@@ -23,8 +23,14 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { NIcon } from "naive-ui";
 import { ArrowDownOutline } from "@vicons/ionicons5";
-import multiplebox from "@/assets/svg/multiplebox.svg";
+
+const props = defineProps({
+  cardTitle: String,
+  id: Number,
+  description: String,
+  icon: String,
+});
 </script>
