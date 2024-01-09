@@ -40,13 +40,12 @@
         </div>
       </div>
     </div>
-    <a
-      href="https://tailwindcss.com/"
-      target="_blank"
+    <button
       class="border-2 border-black text-xl rounded-3xl py-2 px-6 bg-[#F15A29] min-[428px]:hidden"
+      @click="productClicked()"
     >
       Discover Product
-    </a>
+    </button>
   </div>
 </template>
 <script lang="ts" setup>

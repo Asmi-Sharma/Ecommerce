@@ -39,7 +39,6 @@ import bar from "@/assets/svg/bar.svg";
 import heart from "@/assets/svg/heart.svg";
 
 const selectedCardId: Ref<Number> = ref(1);
-// const selectedSmallCardId: Ref<Number> = ref(0);
 
 const cardData = [
   {
@@ -178,14 +177,4 @@ const handleSelect = (value: Number) => {
     (card: any) => card.id == selectedCardId.value
   );
 };
-
-// const handleSelectSmallCard = (value: Number) => {
-//   console.log(value);
-//   selectedSmallCardId.value = value;
-//   console.log(selectedSmallCardId);
-//   selectedCard.value = cardData.filter(
-//     (card: any) => card.id == selectedSmallCardId.value
-//   );
-//   console.log(selectedCard);
-// };
 </script>
