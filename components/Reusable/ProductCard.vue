@@ -1,21 +1,24 @@
 <template>
   <div
-    class="rounded-lg bg-[#FFE58C] px-16 pt-10 pb-16 flex gap-28 items-center"
+    class="rounded-lg bg-[#FFE58C] px-8 min-[428px]:px-16 pt-10 pb-16 flex flex-col min-[428px]:flex-row gap-8 min-[428px]:gap-28 items-center"
   >
-    <div class="w-1/2">
-      <h1 class="text-5xl">{{ props.selectedCard[0].product_title }}</h1>
-      <p class="text-2xl pt-6 pb-8">
-        {{ props.selectedCard[0].product_description }}
+    <div class="min-[428px]:w-1/2">
+      <h1 class="text-[32px] min-[428px]:text-5xl">
+        {{ props.selectedCard.product_title }}
+      </h1>
+      <p class="text-xl min-[428px]:text-2xl pt-6 min-[428px]:pb-8">
+        {{ props.selectedCard.product_description }}
       </p>
       <button
-        class="border-2 border-black text-xl rounded-3xl py-2 px-6 bg-[#F15A29]"
+        class="border-2 border-black text-xl w-fit rounded-3xl py-2 px-6 bg-[#F15A29] hidden min-[428px]:block"
+        @click="productClicked()"
       >
         Discover Product
       </button>
     </div>
-    <div class="w-1/2 text-lg font-normal">
+    <div class="w-full min-[428px]:w-1/2 text-lg font-normal">
       <div
-        v-for="(product, i) in props.selectedCard[0].Accordion"
+        v-for="(product, i) in props.selectedCard.Accordion"
         :key="i"
         class="py-6 border-b border-black"
       >
@@ -37,6 +40,13 @@
         </div>
       </div>
     </div>
+    <a
+      href="https://tailwindcss.com/"
+      target="_blank"
+      class="border-2 border-black text-xl rounded-3xl py-2 px-6 bg-[#F15A29] min-[428px]:hidden"
+    >
+      Discover Product
+    </a>
   </div>
 </template>
 <script lang="ts" setup>
@@ -47,6 +57,8 @@ const props = defineProps({
   selectedCard: Object,
 });
 
+const router = useRouter();
+
 const selectedId: Ref<Number> = ref(0);
 const handleAccordionClick = (id: Number) => {
   if (selectedId.value != id) {
@@ -54,5 +66,11 @@ const handleAccordionClick = (id: Number) => {
   } else {
     selectedId.value = 0;
   }
+};
+
+const productClicked = () => {
+  router.push({
+    path: `/productInfo/${props.selectedCard.id}`,
+  });
 };
 </script>

@@ -1,46 +1,22 @@
 <template>
-  <div class="container my-20">
-    <div class="flex flex-col items-center">
-      <h1 class="text-[28px] min-[428px]:text-[40px] font-bold">
-        Section title
-      </h1>
-      <h2 class="text-lg min-[428px]:text-2xl">Section subtitle</h2>
-    </div>
-    <div
-      class="flex flex-col min-[428px]:flex-row gap-8 min-[428px]:gap-4 justify-center mt-6"
-    >
-      <div v-for="(product, i) in cardData" :key="i">
-        <ReusableCard
-          :cardTitle="product.title"
-          :id="product.id"
-          :description="product.description"
-          :icon="product.icon"
-          :selectedCardId="selectedCardId"
-          @selected="handleSelect"
-          :class="'hidden min-[428px]:block'"
-        />
-        <ReusableCardSmall
-          :product="product"
-          :class="'min-[428px]:hidden mx-10'"
-        />
-      </div>
-    </div>
-    <ReusableProductCard
-      class="mt-8 hidden min-[428px]:flex"
-      :selectedCard="selectedCard[0]"
-    />
+  <div class="flex flex-col items-center mt-8">
+    <p>product id = {{ product[0].id }}</p>
+    <p>product title = {{ product[0].product_title }}</p>
+    <p>description = {{ product[0].product_description }}</p>
+    <p class="text-2xl">
+      Since the design of detail page was not provided so I just displayed the
+      data.
+    </p>
   </div>
 </template>
-
-<script lang="ts" setup>
+<script setup>
 import multiplebox from "@/assets/svg/multiplebox.svg";
 import multiplecircle from "@/assets/svg/multiplecircle.svg";
 import bar from "@/assets/svg/bar.svg";
 import heart from "@/assets/svg/heart.svg";
 
-const selectedCardId: Ref<Number> = ref(1);
-// const selectedSmallCardId: Ref<Number> = ref(0);
-
+const router = useRouter();
+const id = router.currentRoute.value.params.id;
 const cardData = [
   {
     id: 1,
@@ -168,24 +144,5 @@ const cardData = [
   },
 ];
 
-const selectedCard: Ref<Array<Object>> = ref(
-  cardData.filter((card: any) => card.id == selectedCardId.value)
-);
-
-const handleSelect = (value: Number) => {
-  selectedCardId.value = value;
-  selectedCard.value = cardData.filter(
-    (card: any) => card.id == selectedCardId.value
-  );
-};
-
-// const handleSelectSmallCard = (value: Number) => {
-//   console.log(value);
-//   selectedSmallCardId.value = value;
-//   console.log(selectedSmallCardId);
-//   selectedCard.value = cardData.filter(
-//     (card: any) => card.id == selectedSmallCardId.value
-//   );
-//   console.log(selectedCard);
-// };
+const product = cardData.filter((card) => card.id == id);
 </script>

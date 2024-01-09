@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-[#cccccc] shadow-sm rounded-lg pt-4 pr-4 w-[273px] hover:shadow-2xl mt-6"
+    class="border border-[#cccccc] shadow-sm rounded-lg pt-4 pr-4 w-[273px] hover:shadow-2xl"
   >
     <div class="px-6">
       <div class="flex justify-between pb-8">
