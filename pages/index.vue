@@ -4,13 +4,15 @@
       <h1 class="text-[40px] font-bold">Section title</h1>
       <h2 class="text-2xl">Section subtitle</h2>
     </div>
-    <div class="flex gap-4">
+    <div class="flex gap-4 justify-center">
       <div v-for="(product, i) in cardData" :key="i">
         <ReusableCard
           :cardTitle="product.title"
           :id="product.id"
           :description="product.description"
           :icon="product.icon"
+          :selectedCardId="selectedCardId"
+          @selected="handleSelect"
         />
       </div>
     </div>
@@ -24,7 +26,7 @@ import multiplecircle from "@/assets/svg/multiplecircle.svg";
 import bar from "@/assets/svg/bar.svg";
 import heart from "@/assets/svg/heart.svg";
 
-const id = 1;
+const selectedCardId: Ref<Number> = ref(1);
 
 const cardData = [
   {
@@ -153,5 +155,16 @@ const cardData = [
   },
 ];
 
-const selectedCard = cardData.filter((card: any) => card.id == id);
+const selectedCard: Ref<Array<Object>> = ref(
+  cardData.filter((card: any) => card.id == selectedCardId.value)
+);
+console.log("aaaa", selectedCard);
+
+const handleSelect = (value: Number) => {
+  console.log(value);
+  selectedCardId.value = value;
+  selectedCard.value = cardData.filter(
+    (card: any) => card.id == selectedCardId.value
+  );
+};
 </script>

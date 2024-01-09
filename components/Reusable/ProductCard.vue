@@ -23,9 +23,17 @@
           class="flex justify-between items-center hover:cursor-pointer text-lg"
         >
           {{ product.title }}
-          <n-icon :size="15">
+          <n-icon :size="15" @click="handleAccordionClick(product.id)">
             <ChevronDown />
           </n-icon>
+        </div>
+        <div
+          v-if="product.id == selectedId"
+          class="border-t-2 border-[#ffa500] bg-[#ffdb9a]"
+        >
+          <ul v-for="(acc, i) in product.Options">
+            <li>{{ acc }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -38,4 +46,13 @@ import { ChevronDown } from "@vicons/ionicons5";
 const props = defineProps({
   selectedCard: Object,
 });
+
+const selectedId: Ref<Number> = ref(0);
+const handleAccordionClick = (id: Number) => {
+  if (selectedId.value != id) {
+    selectedId.value = id;
+  } else {
+    selectedId.value = 0;
+  }
+};
 </script>
